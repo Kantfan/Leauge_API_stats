@@ -3,14 +3,17 @@ import requests
 import json
 from time import sleep
 
-# Making a get request
+#get API_KEY from text file
 f = open("API_KEY.txt","r")
 API_KEY = f.read()
 f.close()
 
+summoner_name = input("Enter your Sumonner Name: ").replace(" ","%20")
+
 headers = {"X-Riot-Token": API_KEY}
-summoner_info = requests.get('https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/DeIeteZhonyas', headers=headers)
+summoner_info = requests.get(f'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}', headers=headers)
 PUUID = summoner_info.json()['puuid']
+
 f = open("PUUID.txt", "w")
 f.write(PUUID)
 f.close()

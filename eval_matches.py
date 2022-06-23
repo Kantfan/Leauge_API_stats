@@ -3,7 +3,10 @@ import os
 
 path = r'E:\Python_LeagueAPI\matches'
 file_list = os.listdir(path)
-PUUID = 'JTVvWIu-iRJL7KBEIPy1WPf0hWkLnFRfEflJfCwLfkqVT2lp9YNYEMC-3TF8dB-OCiYVIwn5JIH0Xg'
+
+f = open("PUUID.txt","r")
+PUUID = f.read()
+f.close()
 
 for file_name in (file_list):
     if file_name.endswith(".json"):

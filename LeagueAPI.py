@@ -21,13 +21,13 @@ f.close()
 response = requests.get('https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/'+PUUID+'/ids?type=ranked&start=0&count=100', headers = headers)
 matchIDs = response.json()
 last_matchID = matchIDs[-1]
-counter = 0
+counter = 6
 
 for i, matchID in enumerate(matchIDs):
         sleep(1.2)
         match_data = requests.get(f'https://europe.api.riotgames.com/lol/match/v5/matches/{matchID}', headers = headers)
         match_data = match_data.json()
-        with open(f'matchID{counter}_{i}.json', 'w', encoding='utf-8') as f:
+        with open(f'E:\Python_LeagueAPI\matches\matchID{counter}_{i}.json', 'w', encoding='utf-8') as f:
             json.dump(match_data, f, ensure_ascii=False, indent=4)
 
 counter += 1
@@ -53,13 +53,3 @@ while len(matchIDs) == 100:
 
 
 
-
-
-# with open('matchIDs.json', 'w', encoding='utf-8') as f:
-#     json.dump(matchid100, f, ensure_ascii=False, indent=4)
-#    #json.dump(response2, f, ensure_ascii=False, indent=4)
-
-# print response
-print(summoner_info)
-
-# print json content
